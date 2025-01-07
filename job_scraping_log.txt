@@ -1,0 +1,8 @@
+2025-01-06 16:57:55,666 - INFO - Master file created and saved 30 jobs.
+2025-01-06 16:58:30,307 - INFO - New job added: Securities Data Analyst at Royal Bank of Canada. Location: Halifax. Link: https://www.glassdoor.ca/job-listing/j?jl=1009588286598
+2025-01-06 16:58:30,307 - INFO - New job added: IT Data Analyst at The City of Red Deer. Location: Red Deer. Link: https://www.glassdoor.ca/job-listing/j?jl=1009587297991
+2025-01-06 16:58:30,307 - INFO - New job added: Junior Analyst, Data and Reporting at Entuitive. Location: Toronto. Link: https://www.glassdoor.ca/job-listing/j?jl=1009588229016
+2025-01-06 16:58:30,308 - INFO - New job added: PowerBI/Business Intelligence Consultant at Convverge Inc.. Location: Calgary. Link: https://www.glassdoor.ca/job-listing/j?jl=1009588272319
+2025-01-06 16:58:30,308 - INFO - New job added: Summer Business Insights Analyst - Claims at Allstate. Location: nan. Link: https://www.glassdoor.ca/job-listing/j?jl=1009588103854
+2025-01-06 16:58:30,308 - INFO - New job added: Analyst, Supply Chain Replenishment at Shoppers Drug Mart / Pharmaprix. Location: Toronto. Link: https://www.glassdoor.ca/job-listing/j?jl=1009588233907
+2025-01-06 16:58:30,308 - INFO - New job added: Sr Analyst EWRB Compliance at Enbridge. Location: North York. Link: https://www.glassdoor.ca/job-listing/j?jl=1009587582033
