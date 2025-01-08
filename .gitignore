@@ -11,3 +11,7 @@ __pycache__/
 *.pyc
 *.pyo
 *.~*
+
+# Exclude master CSV and log files
+csv_folder/master_jobs.csv
+job_scraping_log.txt

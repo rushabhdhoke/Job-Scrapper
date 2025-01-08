@@ -14,7 +14,6 @@ CSV_DIR = config['paths']['csv_dir']
 MASTER_FILE = os.path.join(CSV_DIR, 'master_jobs.csv')
 
 # Load data
-@st.cache_data
 def load_data():
     if not os.path.exists(MASTER_FILE):
         st.error("Master file not found. Please run the scraper first.")
@@ -68,5 +67,12 @@ else:
     st.markdown("#### Job Listings")
     st.dataframe(
         filtered_df[['title', 'company', 'location', 'date_added', 'job_url']],
-        use_container_width=True
+        use_container_width=True,
+        column_config={
+            'title': st.column_config.Column('Title', width='large'),
+            'company': st.column_config.Column('Company', width='small'),
+            'location': st.column_config.Column('Location', width='small'),
+            'date_added': st.column_config.Column('Date', width='small'),
+            'job_url': st.column_config.LinkColumn('Job URL', display_text="Link", width='small')
+        }
     )
