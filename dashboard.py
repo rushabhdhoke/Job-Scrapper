@@ -1,3 +1,4 @@
+import duckdb
 import pandas as pd
 import streamlit as st
 import os
@@ -10,18 +11,24 @@ config = ConfigParser()
 config.read('config.ini')
 
 # Paths
-CSV_DIR = config['paths']['csv_dir']
-MASTER_FILE = os.path.join(CSV_DIR, 'master_jobs.csv')
+DB_FILE = config['paths']['db_file']
 
-# Load data
+# Load data from DuckDB
 def load_data():
-    if not os.path.exists(MASTER_FILE):
-        st.error("Master file not found. Please run the scraper first.")
+    """Loads job data from the DuckDB database."""
+    if not os.path.exists(DB_FILE):
+        st.error("Database file not found. Please run the scraper first.")
         return pd.DataFrame()
-    df = pd.read_csv(MASTER_FILE)
-    df['date_added'] = pd.to_datetime(df['date_added'], errors='coerce')
-    df = df.dropna(subset=['date_added'])
-    return df.sort_values(by='date_added', ascending=False)
+
+    try:
+        with duckdb.connect(DB_FILE) as conn:
+            df = conn.execute("SELECT id, title, company, location, job_url, date_added FROM jobs").fetchdf()
+        df['date_added'] = pd.to_datetime(df['date_added'], errors='coerce')
+        df = df.dropna(subset=['date_added'])
+        return df.sort_values(by='date_added', ascending=False)
+    except Exception as e:
+        st.error(f"Error loading data: {str(e)}")
+        return pd.DataFrame()
 
 # Load and display data
 df = load_data()
@@ -63,7 +70,7 @@ else:
             top_location_count = df['location'].value_counts().max()
             st.metric(label="Top Job Location", value=top_location, delta=f"{top_location_count} Jobs")
 
-    # Display filtered data
+   # Display filtered data
     st.markdown("#### Job Listings")
     st.dataframe(
         filtered_df[['title', 'company', 'location', 'date_added', 'job_url']],
